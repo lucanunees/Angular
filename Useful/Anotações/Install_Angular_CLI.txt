@@ -1,0 +1,26 @@
+
+===	Curso Angular ===
+Aula: Criando um projeto	
+
+ Através do terminal Hyper navegamos até uma pasta aonde iremos instalar o CLI do Angular (Comand Line Interface)
+Fazendo essa instalação, podeos utilizar comandos no nosso terminal.
+ Quando estalamos o node, instalamos juntos o npm, E através dele que iremos realizar o download.
+ 
+Para realizar a instalação do angular é preciso realizar o comando na pasta aonde o Node esta executado e talvez utilizar o --force
+ Comando para realizar a instalação:
+ npm install -g @Angular/CLI
+ 
+ O porque do -g, para realizar a instalação global e em seguida um nome.
+ 
+
+Utilizando o comando:
+	ng new
+
+ Ele gera automaticamente uma aplicação pra mim, com os testes configurados, typeScript configurado.
+
+ O TypeScript ajuda para trazer a Orientação a objetos pra dentro do JavaScript com
+Criação de classes, interfaces e tipagem.
+
+ Transpilação é troca de uma linguagem para outra, porque o browser lê javaScript e não TypeScript.
+
+OBS: Criar sempre uma aplicação utilizando o CLI, ele ja deixa muita coisa pronta inclusive a transpilação.

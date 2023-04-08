@@ -1,0 +1,73 @@
+
+===	Curso Angular ===
+ Aula: Modulos E Componentes
+
+ Como o angular funciona? 
+ Ele funciona através de modulos e componentes, são os dois items principais do angular.
+
+Então quando a aplicação é executada, ela chama o main.ts que importa o modulo e componente, precisa ter pelo menos modulo
+para funcionar.
+
+	* MAIN.TS *
+	
+EXEMPLO DO ARQUIVO MAIN.TS:
+|--------------------------------------------------------------------------------------------------------------------------------|
+| import { platformBrowserDynamic } from '@angular/platform-browser-dynamic'; -- Significa ele pode criar até aplicações mobile. |
+|																																 |
+| import { AppModule } from './app/app.module'; -- importação do nosso modulo principal.										 |
+|															  																	 |
+|																																 |	
+| platformBrowserDynamic() -- Ele faz o carregamento da plataforma Web ou Mobile.												 |				
+|  .bootstrapModule(AppModule) -- Iniciar a aplicação carregando um modulo, Modulo raiz.                 						 |									 |
+|  .catch(err => console.error(err));																							 |
+|--------------------------------------------------------------------------------------------------------------------------------|
+   
+ Podemos realizar a importação de outros lugares e para identificar se começa com @ significa que ele esta sendo importado da pasta 
+node_modulos ou de outro lugar.
+ Quando contém ./ significa que esta na nossa aplicação.
+ 
+	* MODULE *
+ 
+ EXEMPLO DO ARQUIVO APP.MODULE.TS:
+|---------------------------------------------------------------------------------------------------------------------------------------------|
+|    import { NgModule } from '@angular/core';                                    															  |
+|   import { BrowserModule } from '@angular/platform-browser'; -- Aqui estamos definindo aonde irá rodar, irá rodar em um Browser. 			  |
+|																				  															  |
+|  import { AppComponent } from './app.component'; -- Sou obrigado a ter um componente, então estou importando um componente raiz. 			  |
+|	                                                                              															  |
+| @NgModule({	                                                                  															  |
+|  declarations: [	   -- Colocamos as declarações (componentes extra) que iremos ter nesse modulo	.                                         |
+|    AppComponent	                                                              															  |
+|  ], 						-- Esse trecho do @ pra baixo é chamado de metaData, sempre que tem o @ é um decorator, ele gera informações. 	  |
+|							adicionais a classe. 																							  |
+|																																			  |																								  |
+|  imports: [ 		-- O que estou importando, temos o modulo http, para utilizar appservices api e etc, tudo que for modulo adiciono aqui.   |
+|    BrowserModule	                                                              															  |
+|  ],									                                                                                                      |
+|  providers: [], -- os providers que eu tenho.																  								  |	
+|  bootstrap: [AppComponent] -- Qual será o primeiro componente que irá inciar.												  				  |
+|})																			     															  |
+|export class AppModule { }	-- Aqui temos a class Toda vez que utilizamos export, estamos criando uma classe publica.						  |							  |				
+|---------------------------------------------------------------------------------------------------------------------------------------------|
+
+	*  APP.COMPONENT *
+	
+	No App.Content temos o app.component.html: Que seria a casca o que o usuario/cliente vê.
+	No App.Content temos o app.component.css: Que deixa o HTML, com bonito, estilizado e etc.
+	No App.Content temos o app.component.ts: o Comportamento do component é realizado aqui.
+	
+
+ EXEMPLO DO ARQUIVO APP.COMPONENT.TS:
+|------------------------------------------------------------------------------------------------------------------------|
+|	 import { Component } from '@angular/core'; -- Realizamos a importação externa										 |	
+|																														 |	
+|	@Component({ -- Temos um decotator aqui também.																		 |
+|	  selector: 'app-root', -- Isso aqui é um seletor que é transformado em uma tag HTML, ficando desta forma <app-root> |
+|	  templateUrl: './app.component.html', -- Indica o nosso template.													 |
+|	  styleUrls: ['./app.component.css'] -- Aqui é aonde definimos todos os css que esse componente tem.			     |
+|	  -- E esse bloco é um MetaDado para a nossa classe,															     |
+|	})																													 |
+|	export class AppComponent { -- Export class para tornar essa classe publica.										 |
+|	  title = 'ProjetoInicial';																							 |
+|	}																													 |
+|------------------------------------------------------------------------------------------------------------------------|

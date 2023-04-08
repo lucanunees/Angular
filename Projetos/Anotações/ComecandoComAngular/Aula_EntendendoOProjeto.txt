@@ -1,0 +1,46 @@
+
+===	Curso Angular ===
+ Aula: Entendendo o Projeto	
+ 
+ O projeto vem com algumas pastas ao utilizar o ng new (que cria um projeto Angular com 
+toda a estrutura pronta).
+
+O arquivo tslint.json: é um arquivo que contém dicas em cima do TypeScript, ele mostra como melhorar
+o código.
+
+O arquivo tsconfig.json: é um arquivo para configurar o TypeScript.
+
+O arquivo package.json: é um arquivo que contem os pacotes de dependencia do projeto.
+
+O arquivo package-lock.json: é um arquivo local com nossas dependencia, no caso fica na máquina.
+
+O arquivo Angular.json: é um arquivo de configuração do Angular.
+
+A pasta principal é a SRC (source): é aonde esta toda a aplicação.
+
+O arquivo tsconfig.app.json: é um arquivo de configuração da aplicação. 
+
+O arquivo tsconfig.spec.json: também é um arquivo de configuração da aplicação, sempre que tiver
+spec é referente a teste.
+
+O arquivo Test.ts: é um arquivo para carregar os nossos testes.
+
+O arquivo Style.css: é o estilo da nossa aplicação (css).
+
+O arquivo PolyFills.ts: é um arquivo que carrega os modulos da aplicação.
+
+O arquivo Main.ts: é um arquivo principal que inicia nossa aplicação.
+
+O arquivo Karma.conf.js: é um arquivo que executa os códigos.
+
+O arquivo Index.Html: é um arquivo que contém a nossa pagina de entrada.
+
+O arquivo Favicon.Ico: é um arquivo que contém o icone da nossa pagina no browser.
+
+O arquivo BrowserList: Realiza a compatibilidade css com browser antigos.
+ 
+O arquivo Environments: é aonde armazenamos as variaveis de ambiente, Local host, produção, desenvolvimento, etc.
+
+O arquivo Assets: é as pasta aonde temos imagens, conteudos do css adicionais, javascripts etc.
+
+O arquivo App: é nossa pagina principal aonde temos os nossos modulos e componentes e etc.

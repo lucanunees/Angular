@@ -1,0 +1,88 @@
+
+===	Curso Angular ===
+ Aula: rodando a aplicação, Variaveis e Tipo, Exibindo dados na tela.
+ 
+	*RODANDO A APLICAÇÃO *
+	
+ Para rodar a aplicação, utilizamos o comando ng serve -o, para rodar a aplicação e o -o é pra abrir o browser automaticamente
+
+
+	* VARIAVEIS E TIPO *
+
+	Para criar uma variavel, utilizamos a seguinte linha de código:
+ public significa que estou criando uma variavel publica, nome = variavelExemplo, e o tipo dessa variavel é através de :
+ e o tipo any. 
+ Quando abro o [] significa que essa variavel será um array(lista), então no caso essa variavel, vai ser uma lista de variavelExemplo.
+ E depois eu utilizo o = []; pra vazio.
+ 
+	Exemplo:
+
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+
+export class AppComponent {
+  title = 'ProjetoInicial';
+  -- Exemplo:
+  public variavelExemplo: any[] = [];
+}
+
+	* CONSTRUTOR *
+ Temos o construtor da classe também, ou seja, sempre que o componente for chamado, o construtor será executado também.
+ 
+ import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+
+export class AppComponent {
+  title = 'ProjetoInicial';
+  public variavelExemplo: any[] = [];
+  
+  // Utilizamos o this pra ter acesso a todos os métodos, variaveis da class AppComponent.
+  construtor() {
+  this. variavelExemplo.push('Exemplo de como add em uma lista. utilizando string, porém pode ser any'); e para adicionar um item a essa array(lista), utilizamos o push.
+  this. variavelExemplo.push('Exemplo de como add em uma lista. utilizando string, porém pode ser any');
+  this. variavelExemplo.push(1999); -- Adicionando um int, como ele é do tipo any, aceita qualquer coisa.
+  this. variavelExemplo.push(new Date()); -- Adicionando um int, como ele é do tipo any, aceita qualquer coisa.
+  }
+}
+
+
+	* EXIBINDO DADOS NA TELA *
+	
+ Dentro do arquivo: app.component.html temos a casca da nossa tela, aonde temos os elementos html, 
+o layout da pagina e etc, para exibir as variaves acima na tela, iremos utilizar a seguinte linha de código:
+
+  <div>
+    <h1>{{visualizarVariaveis}}</h1>
+    
+	-- aqui estou utilizando o UL e a lista com as bolinhas pretas e li o conteudo. Desta forma irei exibir a minha lista de variaveis.
+	<ul>
+      <li>
+	  </li> 
+    </ul>
+  </div>
+
+ Para exibir o valor de uma variavel, utilizamos o {{}} então no caso o h1 ficou <h1>{{variavelExemplo}}</h1>
+ 
+ 
+ Utilizamos dentro do <li o *ngFor="" é igual ao for do c#,a forma de criar varaveis no typescript é o let, que seria iqual ao var nome da variavel, of seria o IN 
+ e o nome da lista que você quer percorrer.
+ 
+ Para realizar a exibição da lista, fica desta forma:
+ 
+   <!--Exemplo de exibição-->
+  <div>
+    <h1>{{visualizarVariaveis}}</h1>
+    <ul>
+      <li *ngFor="let list of variavelExemplo">{{variavelExemplo}}</li>
+    </ul>
+  </div>

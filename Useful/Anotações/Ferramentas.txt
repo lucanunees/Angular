@@ -1,0 +1,9 @@
+
+	Curso Angular
+Aula: Ferramentas
+
+	- Ferramentas que iremos utilizar:
+ - NodeJS (ultima verão recomendada)
+ - Editor de código (Visual Code).
+ - Terminal Hyper
+ 

@@ -1,0 +1,103 @@
+
+===	Curso Angular ===
+ Aula: Objetos Complexos
+ 
+ Após criar o construtor dentro do componente e adicionar a lista exemplo de tarefas, ficando desta forma o código:
+ 
+ Exemplo:
+ import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title = 'ProjetoInicial';
+  
+  //Exemplo de variavel publica do tipo any, é uma array (lista). 
+  public variavelExemplo: any[] = [];
+  //Visualizar os exemplos de variaveis
+  public visualizarVariaveis: string = 'Tarefas Diárias';
+
+  //Adicionando valor a minha array de variavelExemplo.
+  constructor() {
+    this.variavelExemplo.push('Trabalhar horario comercial');
+    this.variavelExemplo.push('Ir no mercado'); 
+    this.variavelExemplo.push('Ir para a academia'); 
+    this.variavelExemplo.push('Estudar');
+  }
+}
+
+ Adiciomos na tela componente.html essa lista de tarefas diarias.
+ Desta forma que realizamos a tipagem no código, criamos uma pasta chamada Models dentro da src e criamos uma classe chamada tarefas.
+Exemplo:
+
+-- É desta forma que criamos uma classe publica.
+export class Tarefas {
+
+	-- Podemos passar as propriedades aqui desta forma:
+	public id: Number,
+	public todo: String,
+	public done: Boolean,
+
+}
+
+ Porém iremos utilizar de uma forma melhorada, iremos passar através do construtor, ficando desta forma:
+Exemplo:
+
+ export class Tarefas{
+ 
+	construtor(
+	public id: Number,
+	public todo: String,
+	public done: Boolean,
+	){}
+ 
+ 
+ Fazendo desta forma, na chamada no componente, ele irá ficar desta forma e será necessaria passar as informações de acordo com
+a classe:
+
+import { Component } from '@angular/core';
+import { Tarefas } from 'src/Models/tarefas.model'; -- Ele importa a classe que criamos.
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title = 'ProjetoInicial';
+  
+  public variavelExemplo: Tarefas[] = []; -- Aqui estamos tipando a nossa variavel como tarefas.
+  public visualizarVariaveis: string = 'Tarefas Diárias';
+
+  //Adicionando valor a minha array de variavelExemplo, teremos que passar de acordo com o tipo definido.
+  constructor() {
+ this.variavelExemplo.push(new Tarefas(1, 'Trabalhar horario comercial', false));
+    this.variavelExemplo.push(new Tarefas(2, 'Ir no mercado', false)); 
+    this.variavelExemplo.push(new Tarefas(3, 'Ir para a academia', false)); 
+    this.variavelExemplo.push(new Tarefas(4, 'Estudar', false));
+  }
+}
+
+	Da forma antiga estamos printando na tela a lista de tarefas no component.html desta forma irá dar erro, "object oject"
+	
+Exemplo:
+  <!--Exemplo de exibição-->
+  <div>
+    <h1>{{visualizarVariaveis}}</h1>
+    <ul>
+      <li *ngFor="let list of variavelExemplo">{{variavelExemplo}} - <button>Concluir</button> | <button>Remover</button></li>
+    </ul>
+  </div>
+  
+ Porém agora, temos que mandar o tipo objeto e temos que navegar nele, ficando desta forma:
+  <!--Exemplo de exibição--> 
+  <div>
+    <h1>{{visualizarVariaveis}}</h1>
+    <ul>
+      <li *ngFor="let list of variavelExemplo"> {{list.id}}. {{ list.tarefas}} - <button>Concluir</button> | <button>Remover</button></li>
+    </ul>
+  </div>
+ 

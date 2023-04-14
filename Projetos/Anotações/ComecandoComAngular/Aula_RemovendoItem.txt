@@ -1,3 +1,16 @@
+
+===	Curso Angular ===
+
+ Aula: Removendo um item
+
+ Dentro do nosso appComponent.ts, iremos criar as ações que iremos realizar na nossas tarefas.
+
+Precimaos criar os métodos correspondente a cada ação, e para criar um método basta fazer desta forma:
+remove(){
+}
+
+ Adicionando no component, nosso código ficará desta forma:
+
 import { Component } from '@angular/core';
 import { Tarefas } from 'src/Models/tarefas.model'; //Realizada a importação da classe que iremos utilizar.
 
@@ -9,14 +22,10 @@ import { Tarefas } from 'src/Models/tarefas.model'; //Realizada a importação d
 export class AppComponent {
   title = 'ProjetoInicial';
 
-  //Podemos criar variavel publica do tipo any, é uma array (lista).
-  //Desta forma, criamos a variavel e tipando ela com a nossa classe.
   public variavelExemplo: Tarefas[] = [];
 
-  //Visualizar os exemplos de variaveis
   public visualizarVariaveis: string = 'Tarefas Diárias';
 
-  //Adicionando valor a minha array de variavelExemplo, de acordo com a classe definida.
   constructor() {
     this.variavelExemplo.push(new Tarefas(1, 'Trabalhar horario comercial', false));
     this.variavelExemplo.push(new Tarefas(2, 'Ir no mercado', false));
@@ -25,10 +34,10 @@ export class AppComponent {
   }
 
   //No caso o método vai esperar um tipo Tarefas.
-  remove(list : Tarefas){
+  remove(todo : Tarefas){
     //Desta forma eu irei saber o index que o todo esta me passando, para poder remover da lista.
     //Se caso não existir ele retorna -1
-    const index = this.variavelExemplo.indexOf(list);
+    const index = this.variavelExemplo.indexOf(todo);
 
     //validação de segurança
     if(index !== -1){
@@ -36,13 +45,19 @@ export class AppComponent {
       this.variavelExemplo.splice(index, 1);
     }
   }
+ 
+=====================================================================================================================
 
-  markAsDone(){
-
-  }
-
-  markAsUndo(){
-
-  }
-
-}
+	* A chamada deste método no HTML *
+ A chamada do método no HTML fica desta forma:
+   <!--Exemplo de exibição-->
+  <div>
+    <h1>{{visualizarVariaveis}}</h1>
+    <ul>
+      <li *ngFor="let list of variavelExemplo"> {{list.id}}. {{ list.tarefas}} -
+        <button *ngIf="!list.done">Concluir</button> | <button *ngIf="list.done">Alterar</button> |
+		//Eu chamo a ação clica e passo o meu método e o que ele precisa, a list (todo)
+        <button (click)="remove(list)">Remover</button>
+      </li>
+    </ul>
+  </div>

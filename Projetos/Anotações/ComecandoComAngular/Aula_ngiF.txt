@@ -1,0 +1,24 @@
+
+===	Curso Angular ===
+ Aula: ngIf
+ 
+ ngIf é um comando como se fosse o If do C#. 
+Ficando desta forma no código html:
+
+  <!--Exemplo de exibição-->
+  <div>
+    <h1>{{visualizarVariaveis}}</h1> // Variavel que passa o titulo.
+    <ul>
+      <li *ngFor="let list of variavelExemplo"> {{list.id}}. {{ list.tarefas}} -
+        <button *ngIf="!list.done">Concluir</button> | <button *ngIf="list.done">Alterar</button> |
+        <button>Remover</button>
+      </li>
+    </ul>
+  </div>
+
+Explicando a linha: 
+	<button *ngIf="!list.done">Concluir</button> | <button>Remover</button></li>
+ Nesta condição eu estou validando se o list.done não é true, se ele for true o botão concluir é desativado
+essa condição !list.done é a negação.
+
+

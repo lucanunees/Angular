@@ -1,0 +1,41 @@
+
+===	Curso Angular ===
+
+ Aula: Alterando um item
+ 
+	Para alterar um item, eu criei dois métodos dentro do app.Component.ts
+E nele eu passo o objeto como referencia direto, sendo assim eu não preciso fazer um foreach para
+percorrer a lista.
+Exemplo:
+
+  // Aqui eu já recebo o objeto como referencia, por isso não preciso utilizar o this.
+  // Não sendo preciso percorrer um foreach para achar o index, pois ja está sendo passado, por referencia.
+  
+  markAsDone(list : Tarefas){ --Ja recebo o objeto direto.
+    list.done = true;
+  }
+
+  markAsUndo(list : Tarefas){
+    list.done = false;
+  }
+====================================================================================================================
+
+ * ALTERAÇÃO NO HTML*
+ A alteração no html é basicamente a chamada do click passando o método que eu queria.
+ Então eu tenho que passar o (click)= "função" se tiver referencia, eu passo a referencia ()
+exemplo:
+
+  <!--Exemplo de exibição-->
+  <div>
+    <h1>{{visualizarVariaveis}}</h1>
+    <ul>
+      <li *ngFor="let list of variavelExemplo"> {{list.id}}. {{ list.tarefas}} -
+        <button *ngIf="!list.done" (click) = "markAsDone(list)">Concluir</button> | -- chamando o método markAsUndo
+        <button *ngIf="list.done" (click) = "markAsUndo(list)">Alterar</button> | -- chamando o método markAsDone
+        <button (click)="remove(list)">Remover</button> -- chamando o método remove
+      </li>
+    </ul>
+  </div>
+  
+====================================================================================================================
+

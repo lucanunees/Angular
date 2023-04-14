@@ -1,0 +1,181 @@
+
+===	Curso Angular ===
+
+ Aula: Forms Básico
+ 
+ Vamos utilizar o react forms do angular, ou seja, toda ação que realizarmos no typscript ele tem uma reação.
+ 
+ * MANEIRA CORRETA DE TRABALHAR COM O FORMS *
+ 
+ - Utilizar o react forms do angular
+ - Form builder
+ 
+ E para criar o formularaio de teste, iremos realizar a seguinte trecho de código, dentro do app.Component.HTML:
+   
+   * DENTRO DE APP.Component.HTML *
+   
+   <!-- Criando o forms react do angular -->
+  <h1>Exempo de Forms</h1>
+  <form>
+      <fieldset>
+        <label>Tarefa</label>
+        <input type="text">
+        <button>Salvar</button>
+      </fieldset>
+  </form>
+  
+============================================================================================================================
+
+	* DENTRO DE APP.MODULE.TS *
+
+É necessario importar esse formulario ele não vem como padrão, por isso dentro do app.Module.ts, irempos no decorator, 
+adicionar dentro de imports o ReactiveFormsModule, ficando desta forma:
+
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { AppComponent } from './app.component';
+import { ReactiveFormsModule } from '@angular/forms'; -- Realizada a importação
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    ReactiveFormsModule -- Adicionado dentro de imports.
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+
+============================================================================================================================
+
+	* DENTRO DE APP.COMPONENT.TS *
+	
+	Voltando para o app.Component.ts, primeira coisa que iremos fazer é criar é um forms group,
+o form group define um grupo de formularios, então dentro da export class, iremos adicionar o public form: FormGroup, e ele
+irá realizar o import.
+
+Ficando desta forma:
+
+import { Component } from '@angular/core';
+import { FormGroup } from '@angular/forms'; // Realizada a importação do forms.
+import { Tarefas } from 'src/Models/tarefas.model'; //Realizada a importação da classe que iremos utilizar.
+
+@Component({
+  selector: 'app-root', //<app-root></app-root>
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title = 'ProjetoInicial';
+  public variavelExemplo: Tarefas[] = [];
+  public visualizarVariaveis: string = 'Tarefas Diárias';
+
+  //Criando o formsGroup
+  public form!: FormGroup;
+
+  constructor() {
+    this.variavelExemplo.push(new Tarefas(1, 'Trabalhar horario comercial', false));
+    this.variavelExemplo.push(new Tarefas(2, 'Ir no mercado', false));
+    this.variavelExemplo.push(new Tarefas(3, 'Ir para a academia', true));
+    this.variavelExemplo.push(new Tarefas(4, 'Estudar', false));
+  }
+
+============================================================================================================================
+
+	* DENTRO DE APP.COMPONENT.HTML *
+	
+	Já no App.Component.Html, temos que adicionar a tag [formGroup] para lincar o formulario html com o typscript.
+	Ficando o trecho de código desta forma:
+	
+<!-- Criando o forms react do angular -->
+  <h1>Exempo de Forms</h1>
+  <form [formGroup]="form"> // aqui estamos fazendo a referencia para o typscript.
+      <fieldset>
+        <label>Tarefa</label>
+        <input type="text">
+        <button>Salvar</button>
+      </fieldset>
+  </form>
+  
+============================================================================================================================
+
+	* DENTRO DE APP.COMPONENT.TS *
+ 
+ Iremos criar no construtor uma instancia do form Builder, ficando assim:
+ 
+ import { FormBuilder, FormGroup } from '@angular/forms'; // Ele também fica dentro do @angular/forms, então ele só adiciona 
+ mais um item.
+ 
+ constructor(private fb: FormBuilder) { -- aqui estou instanciando o formBuilder
+    this.variavelExemplo.push(new Tarefas(1, 'Trabalhar horario comercial', false));
+    this.variavelExemplo.push(new Tarefas(2, 'Ir no mercado', false));
+    this.variavelExemplo.push(new Tarefas(3, 'Ir para a academia', true));
+    this.variavelExemplo.push(new Tarefas(4, 'Estudar', false));
+  }
+  
+============================================================================================================================
+	
+	* DENTRO DE APP.COMPONENT.TS *
+
+Após realizar os procedimentos acima, iremos criar o formulario, instanciar ele no construtor(quando não faz isso, dá erro
+na variavel public form criada.)
+	Exemplo de trecho de código abaixo:
+
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'; -- fazemos a importacao do Validators.
+import { Tarefas } from 'src/Models/tarefas.model'; 
+
+@Component({
+  selector: 'app-root', //<app-root></app-root>
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title = 'ProjetoInicial';
+  public variavelExemplo: Tarefas[] = [];
+  public visualizarVariaveis: string = 'Tarefas Diárias';
+
+  //Criando o formsGroup
+  public form: FormGroup;
+
+  constructor(private fb: FormBuilder) {
+
+    //Instanciando o form:
+    this.form = this.fb.group({ //Aqui estou criando um group dentro do formBuilder
+      title: ['', Validators.compose([
+        Validators.minLength(3),
+        Validators.maxLength(60), // Estou definindo que o nosso formulario o titulo, tem que ter minimo 3 caracteres maximo 60.
+        Validators.required //E aqui estou definindo que ele é requerido, obrigatorio.
+      ])]
+    })
+
+    this.variavelExemplo.push(new Tarefas(1, 'Trabalhar horario comercial', false));
+    this.variavelExemplo.push(new Tarefas(2, 'Ir no mercado', false));
+    this.variavelExemplo.push(new Tarefas(3, 'Ir para a academia', true));
+    this.variavelExemplo.push(new Tarefas(4, 'Estudar', false));
+  }
+  
+============================================================================================================================
+
+	* DENTRO DO APP.COMPONENT.HTML *
+
+Agora iremos lincar o que fizemos acima, o forms com a pagina html.
+
+  <!-- Criando o forms react do angular -->
+  <h1>Exempo de Forms</h1>
+  <form [formGroup]="form">
+      <fieldset>
+        <label>Tarefa </label>
+        <input
+          type="text"
+          placeholder="Título da tarefa"
+          maxlength="60"
+          formControlName="title"> adicionamos ao input o nome do form 	que cadastramos em cima.
+        <button>Salvar</button>
+      </fieldset>
+  </form>
+
+============================================================================================================================

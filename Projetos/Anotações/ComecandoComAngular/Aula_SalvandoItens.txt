@@ -1,0 +1,54 @@
+
+===	Curso Angular ===
+
+ Aula: Salvando os Itens
+ 
+	Para salvar as tarefas que adicionarmos na página, podemos salvsar direto no storage do navegador,
+ou em um banco de dados normal, para salvar no navegador TEMOS DUAS OPÇÕES:
+ 
+LOCAL STORAGE - Que deixa as informações guardadas local, mesmo reiniciando a máquina as informações
+estaram guardadas.
+
+SESSION STORAGE - Que deixa as informações guardadas enquanto a página/sessão está aberta,
+quando fechado a aba ele perderá as informações. 
+
+
+	Obs: Temos que salvar passando chave e valor, mas para não precisar criar várias chaves, iremos passar um arquivo json.
+====================================================================================================================================
+
+	* DENTRO DE APP.COMPONENTE.TS *
+
+Iremos criar o método save(){}
+
+Exemplo:
+
+ save() {
+ // O json.stringify converte um objeto json para string.
+ const data = JSON.stringify(this.listTarefas);
+ 
+ //Salvando em LocalStorage e ele pede chave e valor
+ //chave = listTarefas
+ //valor = data(meu objeto json convertido para string)
+ localStorage.setItem('listTarefas', data);
+ }
+ 
+ E vou adicionar no método add() a chamda do save, ou seja, quando adicionar um item ele vai salvar.
+   
+Código:  
+   add() {
+    //Primeiro iremos recuperar o valor que foi setado dentro de titleForm
+    const titleForm = this.form.controls['titleForm'].value;
+
+    //Adicionando conforme itens da lista +1
+    const id = this.listTarefas.length +1;
+
+    //Adicionando a tarefa a lista.
+    this.listTarefas.push(new Tarefas(id,titleForm,false));
+
+    //chamando o método de salvar
+    this.save();
+
+    //Chamo o método que limpa o forms depois de inserir na lista
+    this.clear()
+  }
+====================================================================================================================================

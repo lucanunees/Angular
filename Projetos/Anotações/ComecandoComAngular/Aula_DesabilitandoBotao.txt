@@ -1,0 +1,19 @@
+
+===	Curso Angular ===
+
+ Aula: Desabilitando Botão
+ 
+ 
+	Para desabilitar o botão salvar, basta passar entre chaves pois iremos executar a nivel de typescript,
+ficando desta forma:
+
+  <!-- Criando o forms react do angular -->
+  <h1>Exempo de Forms</h1>
+  <form [formGroup]="form">
+    <fieldset> <!--"form.pristine"  O mesmo server para o formulario, para verificar se ele ja foi iniciado/alterado-->
+      <label>Tarefa </label>
+      <input type="text" placeholder="Título da tarefa" maxlength="60" formControlName="titleForm">
+      <!-- <small *ngIf="form.controls.titleForm.invalid && !form.controls.titleForm.pristine">Este campo deve conter entre 3 e 60 catacteres</small> -->
+      <button [disabled]="form.invalid">Salvar</button> //Utilizando o disable e passando a condição, caso o form for invalid ele irá desabilitar.
+    </fieldset>
+  </form>

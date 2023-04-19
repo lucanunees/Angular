@@ -1,0 +1,48 @@
+
+===	Curso Angular ===
+
+ Aula: Adicionando uma Tarefa
+ 
+	* DENTRO DE APP.COMPONENT.TS *
+ 
+ Vamos criar um método chamado de Add(){}
+ Exemplo:
+  add() {
+    //Primeiro iremos recuperar o valor que foi setado dentro de titleForm
+    const titleForm = this.form.controls['titleForm'].value;
+
+    //Adicionando conforme itens da lista +1
+    const id = this.listTarefas.length +1;
+
+    //Adicionando a tarefa a lista.
+    this.listTarefas.push(new Tarefas(id,titleForm,false));
+
+    //Chamo o método que limpa o forms depois de inserir na lista
+    this.clear()
+  }
+
+==================================================================================================================================================================
+
+	* DENTRO DE APP.COMPONENT.HTML *
+	
+	Iremos relacionar o método acima, com o botão salvar.
+Exemplo:
+
+  <!-- Criando o forms react do angular -->
+  <h1>Exempo de Forms</h1>
+  <form [formGroup]="form">
+    <fieldset> <!--"form.pristine"  
+      <label>Tarefa </label>
+      <input type="text" placeholder="Título da tarefa" maxlength="60" formControlName="titleForm">
+      <!-- <small *ngIf="form.controls.titleForm.invalid && !form.controls.titleForm.pristine">Este campo deve conter entre 3 e 60 catacteres</small> -->
+      <button [disabled]="form.invalid" (click)="add()">Salvar</button> // Chamando o método add()
+    </fieldset>
+  </form>
+  
+================================================================================================================================================================== 
+  
+ * OBS: ADICIONAMOS O MÉTODO CLEAR PARA RESETAR AS INFORMAÇÕES DO FORMULARIO *
+Exemplo:
+   clear() {
+    this.form.reset();
+  }

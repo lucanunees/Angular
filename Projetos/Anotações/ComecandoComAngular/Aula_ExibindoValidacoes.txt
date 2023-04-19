@@ -1,0 +1,43 @@
+
+===	Curso Angular ===
+
+ Aula: Exibindo Validações
+
+
+	Obs: Não conseguimos fazer funcionar desta forma. (acho que é a versão)
+
+	Para exibir as validações, utilizamos o ngIf passando os controls que esta dentro do APP.Component.TS, por exemplo obrigatorio
+title.
+
+Exemplo:
+
+constructor(public fb: FormBuilder) 
+{
+    //Instanciando o form:
+    this.form = this.fb.group({ //Aqui estou criando um group dentro do formBuilder
+      title: ['', Validators.compose([
+        Validators.minLength(3),
+        Validators.maxLength(60), // Estou definindo que o nosso formulario o titulo, tem que ter minimo 3 caracteres maximo 60.
+        Validators.required //E aqui estou definindo que ele é requerido, obrigatorio.
+      ])]
+    })
+}
+===================================================================================================================================================
+
+	* DENTRO DO APP.COMPONENT.HTML *
+
+	Passamos dentro da tag <small></small> O ngif, validando os controles do title, por exemplo, se for invalido ele irá aparecer a mensagem,
+a outra validação é o pristine, que verifica se o campo já foi iniciado/alterado, assim que ele clicar a mensagem irá desaperecer
+
+  <!-- Criando o forms react do angular -->
+  <h1>Exempo de Forms</h1>
+  <form [formGroup]="form">
+    <fieldset>"form.pristine" //O mesmo server para o formulario, para verificar se ele ja foi iniciado/alterado
+      <label>Tarefa </label>
+      <input type="text" placeholder="Título da tarefa" maxlength="60" formControlName="title">
+      <small *ngIf="form.controls.title.invalid && !form.controls.title.pristine">Este campo deve conter entre 3 e 60 catacteres</small>
+      <button>Salvar</button>
+    </fieldset>
+  </form>
+  
+  
